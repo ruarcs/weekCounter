@@ -15,25 +15,12 @@ public class CodilityAlternative
 		System.out.println("Done!");
 	}
 	
-	private int dateOfFirstMondayInJanuary( int dayOfWeek )
-	{
-	    if( dayOfWeek == 0 )
-	    {
-	    	// First is a Monday.
-	        return 1;
-	    }
-	    int startDay = dayOfWeek;
-	    // Count the number of days until the next Monday.
-	    while( ++dayOfWeek <= 8 );
-	    return dayOfWeek - startDay;
-	}
-	
 	private int solution( int year, int startMonth, int endMonth, int dayOfWeek )
 	{
 		int[] numDaysInMonths = numDaysInMonthForYear( year );
 		int weekCount = 0;
 		boolean counting = false;
-		int firstMondayInJanuary = dateOfFirstMondayInJanuary( dayOfWeek );
+		int firstMondayInJanuary = (9 - dayOfWeek ) % 7;
 		int day = firstMondayInJanuary;
 		for( int currentMonth = 0; currentMonth < 12; currentMonth++ )
 		{
