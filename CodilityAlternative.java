@@ -4,13 +4,28 @@ public class CodilityAlternative
 	public static void main( String[] args )
 	{
 		CodilityAlternative c = new CodilityAlternative();
-		int temp = c.solution(2014, 3, 4, 2);
+		int temp = c.solution(2014, 3, 4, 3);
 		assert temp == 7: "Expected 7, got " + temp;
-		temp = c.solution(2014, 0, 3, 2);
+		temp = c.solution(2014, 0, 3, 3);
 		assert temp == 16: "Expected 16, got " + temp;
-		temp = c.solution(2014, 0, 11, 2);
+		temp = c.solution(2014, 0, 11, 3);
 		assert temp == 51: "Expected 51, got " + temp;
+		temp = c.solution(2018, 0, 0, 0);
+		assert temp == 4: "Expected 4, got " + temp;
 		System.out.println("Done!");
+	}
+	
+	private int dateOfFirstMondayInJanuary( int dayOfWeek )
+	{
+	    if( dayOfWeek == 0 )
+	    {
+	    	// First is a Monday.
+	        return 1;
+	    }
+	    int startDay = dayOfWeek;
+	    // Count the number of days until the next Monday.
+	    while( ++dayOfWeek <= 8 );
+	    return dayOfWeek - startDay;
 	}
 	
 	private int solution( int year, int startMonth, int endMonth, int dayOfWeek )
@@ -18,7 +33,7 @@ public class CodilityAlternative
 		int[] numDaysInMonths = numDaysInMonthForYear( year );
 		int weekCount = 0;
 		boolean counting = false;
-		int firstMondayInJanuary = 7 - dayOfWeek + 1;
+		int firstMondayInJanuary = dateOfFirstMondayInJanuary( dayOfWeek );
 		int day = firstMondayInJanuary;
 		for( int currentMonth = 0; currentMonth < 12; currentMonth++ )
 		{
